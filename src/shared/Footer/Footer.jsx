@@ -117,7 +117,7 @@ const Footer = () => {
           </div>
           <div className="space-y-3">
             <div className=" text-xl font-bold">
-              <h1> CONTACT US</h1>
+
 
               <div className="space-y-3 mt-3">
                 <span className="flex gap-3 items-center text-lg ">
