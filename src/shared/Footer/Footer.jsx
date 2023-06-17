@@ -121,7 +121,7 @@ const Footer = () => {
 
               <div className="space-y-3 mt-3">
                 <span className="flex gap-3 items-center text-lg ">
-
+                  <p>Dhanmondi,Dhaka</p>
                 </span>
                 <span className="flex gap-3 items-center text-lg ">
 
