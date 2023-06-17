@@ -219,4 +219,4 @@ const UpdateToys = () => {
   );
 };
 
-
+export default UpdateToys;
