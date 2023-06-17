@@ -125,7 +125,7 @@ const Footer = () => {
                 </span>
                 <span className="flex gap-3 items-center text-lg ">
 
-
+                  <p>rana@gmail.com</p>
                 </span>
                 <span className="flex gap-3 items-center text-lg ">
                   <p> 00 65 44 557</p>
