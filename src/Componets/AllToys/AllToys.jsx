@@ -1,39 +1,14 @@
-import { useLoaderData, useNavigation } from "react-router-dom";
-import AllToysRow from "./AllToysRow";
-import Loading from "../../Loading/Loading";
-import { useState } from "react";
-import useTitle from "../../Hooks/useTitle";
+import { useLoaderData } from "react-router-dom";
+
 
 const AllToys = () => {
-  useTitle("AllToys");
-  const allToys = useLoaderData();
-  const [allToy, setAllToy] = useState(allToys);
-  const [searchItems, setSearchItems] = useState("");
-  const [showAll, setShowAll] = useState(false);
+  const info = useLoaderData()
 
-  const navigation = useNavigation();
-  if (navigation.state === "loading") {
-    return <Loading></Loading>;
-  }
-  const handleSearch = () => {
-    fetch(
-      `https://toy-server-ranaahmed33.vercel.app/getToysByText/${searchItems}`,
-      {
-        method: "GET",
-        headers: { "content-type": "application/json" },
-      }
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        // console.log(data);
-        setAllToy(data);
-      });
-  };
 
 
   return (
     <section className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
-      <div className="space-x-2 mb-4 mt-4">
+      {/* <div className="space-x-2 mb-4 mt-4">
         <input
           type="text"
           placeholder="Search here"
@@ -43,42 +18,35 @@ const AllToys = () => {
         <button onClick={handleSearch} className="btn btn-active mt-2">
           Search
         </button>
-      </div>
+      </div> */}
       <div className="overflow-x-auto">
         <table className="table table-compact w-full">
           {/* head */}
           <thead>
             <tr>
-              <th>No.</th>
-              <th>Seller Name</th>
-              <th>Toy Name</th>
-              <th>Toy Category</th>
-              <th>Available Quantity</th>
-              <th>View Details</th>
+              <th className="text-center">No.</th>
+              <th className="text-center">Seller Name</th>
+              <th className="text-center">Toy Name</th>
+              <th className="text-center">Toy Category</th>
+              <th className="text-center">Available Quantity</th>
+              <th className="text-center">View Details</th>
             </tr>
           </thead>
-          <tbody>
-            {/* row 1 */}
-
-            {/* <th>1</th>
-              <td>Cy Ganderton</td>
-              <td>Quality Control Specialist</td>
-              <td>Blue</td> */}
-            {allToy.slice(0, showAll ? allToy.length : 6).map((toys, index) => (
-              <AllToysRow index={index} toys={toys} key={toys._id}></AllToysRow>
-            ))}
-          </tbody>
+          {
+            info.map((item, index) => <tbody >
+              <tr>
+                <td className="text-center">{index + 1}</td>
+                <td className="text-center">{item.sellerName}</td>
+                <td className="text-center">{item.name}</td>
+                <td className="text-center">{item.subCategory}</td>
+                <td className="text-center">{item.quantity}</td>
+                <td className="text-center">{item.description}</td>
+              </tr>
+            </tbody>)
+          }
         </table>
       </div>
       <div className="text-center mb-4">
-        {!showAll && (
-          <button
-            onClick={() => setShowAll(!showAll)}
-            className="btn btn-outline btn-secondary mt-6 "
-          >
-            See More
-          </button>
-        )}
       </div>
     </section>
   );
